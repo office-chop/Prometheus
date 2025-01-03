@@ -426,12 +426,13 @@ function Ast.NumberExpression(value)
 	}
 end
 
-function Ast.StringExpression(value)
-	return {
-		kind = AstKind.StringExpression,
-		isConstant = true,
-		value = value,
-	}
+function Ast.StringExpression(value, wtMark)
+    return {
+        kind = AstKind.StringExpression,
+        isConstant = true,
+        value = value,
+        wtMark = wtMark or nil,
+    }
 end
 
 function Ast.OrExpression(lhs, rhs, simplify)

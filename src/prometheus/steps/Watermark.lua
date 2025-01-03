@@ -41,7 +41,7 @@ function Watermark:apply(ast)
     functionScope:addReferenceToHigherScope(ast.globalScope, variable);
     
     local arg = functionScope:addVariable();
-    local statement = Ast.PassSelfFunctionCallStatement(Ast.StringExpression(self.Content), "gsub", {
+    local statement = Ast.PassSelfFunctionCallStatement(Ast.StringExpression(self.Content, true), "gsub", {
       Ast.StringExpression(".+"),
       Ast.FunctionLiteralExpression({
         Ast.VariableExpression(functionScope, arg)

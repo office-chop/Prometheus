@@ -463,9 +463,13 @@ function Unparser:unparseExpression(expression, tabbing)
 			return expression.scope:getVariableName(expression.id);
 	end
 	
-	if(expression.kind == AstKind.StringExpression) then
-		return "\"" .. escapeString(expression.value) .. "\"";
-	end
+    if expression.kind == AstKind.StringExpression then
+        if expression['wtMark'] then
+            return '\'' .. expression.value .. '\''
+        else
+            return '\'' .. escapeString(expression.value) .. '\''
+        end
+    end
 	
 	if(expression.kind == AstKind.NilExpression) then
 		return "nil";
